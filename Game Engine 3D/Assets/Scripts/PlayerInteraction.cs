@@ -13,7 +13,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] float sniperDst;
     float distance;
     Transform rayCastOrigin;
-    GameObject target;
+    IShotable target;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +26,7 @@ public class PlayerInteraction : MonoBehaviour
         Debug.DrawRay(rayCastOrigin.position, rayCastOrigin.forward, Color.cyan);
         if (Input.GetButtonDown("Fire1"))
         {
-            Destroy(target);
+            target.Hit();
         }
         
         if (Input.GetButtonDown("Fire2"))
@@ -44,7 +44,14 @@ public class PlayerInteraction : MonoBehaviour
     {
         if(Physics.Raycast(rayCastOrigin.position, rayCastOrigin.forward, out RaycastHit hit, distance))
         {
-            target = hit.collider.gameObject;      
+            if(hit.collider.TryGetComponent(out IShotable target))
+            {
+               // this.target = target;
+            }
+        }
+        else
+        {
+            //this.target = null;
         }
     }
     void ChangeSniperMode(SniperMode mode)
