@@ -11,6 +11,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] SniperMode sniperMode;
     [SerializeField] float rifleDst;
     [SerializeField] float sniperDst;
+    
     float distance;
     Transform rayCastOrigin;
     IShotable target;
