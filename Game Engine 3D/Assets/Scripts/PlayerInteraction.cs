@@ -27,7 +27,7 @@ public class PlayerInteraction : MonoBehaviour
         Debug.DrawRay(rayCastOrigin.position, rayCastOrigin.forward, Color.cyan);
         if (Input.GetButtonDown("Fire1"))
         {
-            target.Hit();
+            target?.Hit();
         }
         
         if (Input.GetButtonDown("Fire2"))
@@ -47,12 +47,12 @@ public class PlayerInteraction : MonoBehaviour
         {
             if(hit.collider.TryGetComponent(out IShotable target))
             {
-               // this.target = target;
+                this.target = target;
             }
         }
         else
         {
-            //this.target = null;
+            this.target = null;
         }
     }
     void ChangeSniperMode(SniperMode mode)
